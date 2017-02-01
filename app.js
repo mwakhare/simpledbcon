@@ -9,10 +9,10 @@
 // });
 
 
-var abc = require("./tblUserModule");
+var tbleUserModule = require ("./tblUserModule");
 
-var record = abc.tblUserGetOne (1);
+var record = tblUserModule.tblUserGetOne (1);
 
-console.log("+++++++++++++++++++++++++++");
+console.log ("+++++++++++++++++++++++++++");
 console.log (record);
-console.log("+++++++++++++++++++++++++++");
+console.log ("+++++++++++++++++++++++++++");
