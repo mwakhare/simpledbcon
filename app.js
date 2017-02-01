@@ -11,8 +11,9 @@
 
 var abc = require("./tblUserModule");
 
-var record = abc.tblUserGetOne (1);
-
-console.log("+++++++++++++++++++++++++++");
-console.log (record);
-console.log("+++++++++++++++++++++++++++");
+abc.tblUserGetOne (1, function(err,rows,fields){
+	console.log("+++++++++++++++++++++++++++");
+	console.log(rows);
+	console.log(fields);
+	console.log("+++++++++++++++++++++++++++");
+});

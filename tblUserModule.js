@@ -2,20 +2,29 @@
 
 var mysql = require ('mysql');
 
+// var pool = mysql.createPool 
+// ({
+//     connectionLimit : 100, //max limit to fix.
+//     host     : 'localhost',
+//     user     : 'milind',
+//     password : 'Tori@2016',
+//     database : 'korsall'
+// });
+
 var pool = mysql.createPool 
 ({
     connectionLimit : 100, //max limit to fix.
     host     : 'localhost',
-    user     : 'milind',
-    password : 'Tori@2016',
-    database : 'korsall'
+    user     : 'root',
+    password : 'torinit@123',
+    database : 'demo'
 });
 
 module.exports = 
 {
 
     //if successful, function returns: specific user id record from database
-    tblUserGetOne: function (userIdToFind)
+    tblUserGetOne: function (userIdToFind, callback)
     {
         pool.getConnection (function (err, connection)
         {
@@ -35,15 +44,17 @@ module.exports =
                 if (err) 
                 {   
                     console.error (err);
+                    callback(err);
                     return;
                 }   
 
                 if (!err) 
                 {
-                    console.log (rows);
-                    console.log ("Data received from Database: \n" + rows);
-                    console.log (fields);   // fields contains extra meta data about results, if available
-                    return (rows);          //specific user id record has found and returned.
+                    // console.log (rows);
+                    // console.log ("Data received from Database: \n" + rows);
+                    // console.log (fields);   // fields contains extra meta data about results, if available
+                    //return (rows);          //specific user id record has found and returned.
+                    callback(null,rows,fields);
                 }           
             });
  
