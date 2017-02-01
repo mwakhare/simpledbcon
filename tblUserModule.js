@@ -45,7 +45,7 @@ module.exports =
                 {   
                     console.error (err);
                     callback (err);
-                    return;
+                    //return;
                 }   
 
                 if (!err) 
@@ -89,7 +89,7 @@ module.exports =
                 {   
                     console.error (err);
                     callback (err);
-                    return;
+                    //return;
                 }   
 
                 if (!err) 
@@ -110,6 +110,16 @@ module.exports =
             });
      });
  },
+
+
+// var sql = "SELECT * FROM ?? WHERE ?? = ?";
+// var inserts = ['users', 'id', userId];
+// sql = mysql.format(sql, inserts);
+
+
+// var user = { id: 26, user_info: '{"Name":"sggg","Email":"gg@gmail.com","Password":"gg45kkk","DOB Date of Anniversary":"03/10/2017","Gender":"female","Social":"xp11","TC":"false","Mobile Number":"8754123658","Verified":"true","Active":"true","Last Login":"03/06/2017","IP Address":"192.168.1.125","MAC ID":"1589fds","Browser String":"yrytorrs"}'};
+
+// connection.query ("INSERT INTO user SET ?", user, function (err, result)
 
 
 // tblUserInsert: function  (user)
@@ -137,6 +147,10 @@ module.exports =
 
 
 // important running version
+
+ //connection.query ('UPDATE user SET user_info = JSON_SET(user_info, "$.Name", ?,"$.Email",?) Where ID = ?', ["mohan","mn@gmail.com" ,24],function (err, result) 
+
+       
 
 // con.query(
 //   'UPDATE user SET user_info = JSON_SET(user_info, "$.Name", ?) Where ID = ?', ["VISHAL", 17],function (err, result) {
@@ -199,6 +213,25 @@ module.exports =
                     // console.log (record);
                     // console.log ("Data deleted from Database: \n" + record);
                    // return (result);          //specific user id record has found and returned.
+
+                    if (result.affectedRows == 1) 
+                    {
+                        output = 
+                        {
+                            code: 200,
+                            msg: 'Record is deleted successfully!'
+                        };
+                        
+                    } 
+                    else 
+                    {
+                        output = 
+                        {
+                            code: 500,
+                            msg: 'Record is NOT deleted.'
+                        }
+                    }
+
                     callback (null, result);
                 }           
             });
