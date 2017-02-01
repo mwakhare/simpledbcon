@@ -1,9 +1,10 @@
 'use strict';
 
-var mysql     =    require('mysql');
+var mysql = require ('mysql');
 
-var pool      =    mysql.createPool({
-    connectionLimit : 100, //important
+var pool = mysql.createPool 
+({
+    connectionLimit : 100, //max limit to fix.
     host     : 'localhost',
     user     : 'milind',
     password : 'Tori@2016',
@@ -13,7 +14,7 @@ var pool      =    mysql.createPool({
 module.exports = 
 {
 
-    //if successful, function returns: specific user id record
+    //if successful, function returns: specific user id record from database
     tblUserGetOne: function (userIdToFind)
     {
         pool.getConnection (function (err, connection)
@@ -21,7 +22,7 @@ module.exports =
             if (err) 
             {
                 connection.release ();
-                res.json ({"code" : 100, "status" : "Error in connection database"});  //dummy json error code (error code structure to fix)
+                res.json ({"code" : 100, "status" : "Error in database connection"});  //dummy json error code (error code structure to fix)
                 return;
             }   
  
