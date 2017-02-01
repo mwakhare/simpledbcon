@@ -9,7 +9,7 @@
 // });
 
 
-var abc = require("./tblUserModule");
+var tbleUserModule = require ("./tblUserModule");
 
 abc.tblUserGetOne (1, function(err,rows,fields){
 	console.log("+++++++++++++++++++++++++++");
