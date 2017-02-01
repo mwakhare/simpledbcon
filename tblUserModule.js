@@ -65,30 +65,52 @@ module.exports =
                 return;     
             });
      });
+ },
+
+//if successful, function returns: all user records from database
+    tblUserGetAll: function (callback)
+    {
+        pool.getConnection (function (err, connection)
+        {
+            if (err) 
+            {
+                connection.release ();
+                res.json ({"code" : 100, "status" : "Error in database connection"});  //dummy json error code (error code structure to fix)
+                return;
+            }   
+ 
+            console.log ('Database connection thread id: ' + connection.threadId);
+         
+            connection.query ("SELECT * FROM user",  function (err, rows, fields)
+            {
+                connection.release ();
+        
+                if (err) 
+                {   
+                    console.error (err);
+                    callback (err);
+                    return;
+                }   
+
+                if (!err) 
+                {
+                    // console.log (rows);
+                    // console.log ("Data received from Database: \n" + rows);
+                    // console.log (fields);   // fields contains extra meta data about results, if available
+                    // return (rows);          //specific user id record has found and returned.
+                    callback (null, rows, fields);
+                }           
+            });
+ 
+            //database connection error
+            connection.on ('error', function (err)
+            {      
+                res.json ({"code" : 100, "status" : "Error in database connection"}); //dummy json error code (error code structure to fix)
+                return;     
+            });
+     });
  }
 
-
-// tblUserGetAll: function  ()
-//  {
-//     connection.query ("SELECT * FROM user", 
-//     function (err, rows, fields)
-//     {
-//         connection.release ();
-        
-//         if (err) 
-//         {
-//             console.error (err);
-//             return;
-//         }   
-
-//         if (!err) 
-//         {
-//             console.log ("Data received from Db: \n" + rows);
-//             console.log (fields);            // fields contains extra meta data about results, if available
-//             return (rows);
-//         }           
-//     });
-// },
 
 // tblUserInsert: function  (user)
 //  {

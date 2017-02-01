@@ -11,7 +11,8 @@
 
 var tbleUserModule = require ("./tblUserModule");
 
-<<<<<<< Updated upstream
+console.log ("+++++++++++  tblUserGetOne  ++++++++++++++++");
+
 tbleUserModule.tblUserGetOne (1, function (err, rows, fields)
 {
 	if (err)
@@ -25,11 +26,23 @@ tbleUserModule.tblUserGetOne (1, function (err, rows, fields)
 		console.log (fields);
 		console.log ("+++++++++++++++++++++++++++");
 	}
-=======
-tbleUserModule.tblUserGetOne (1, function(err,rows,fields){
-	console.log("+++++++++++++++++++++++++++");
-	console.log(rows);
-	console.log(fields);
-	console.log("+++++++++++++++++++++++++++");
->>>>>>> Stashed changes
+
+});
+
+console.log ("+++++++++++  tblUserGetAll  ++++++++++++++++");
+
+tbleUserModule.tblUserGetAll (function (err, rows, fields)
+{
+	if (err)
+	{
+		throw err;
+	}
+	else
+	{
+		console.log ("+++++++++++++++++++++++++++");
+		console.log (rows);
+		console.log (fields);
+		console.log ("+++++++++++++++++++++++++++");
+	}
+
 });
