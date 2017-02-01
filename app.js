@@ -11,9 +11,17 @@
 
 var tbleUserModule = require ("./tblUserModule");
 
-abc.tblUserGetOne (1, function(err,rows,fields){
-	console.log("+++++++++++++++++++++++++++");
-	console.log(rows);
-	console.log(fields);
-	console.log("+++++++++++++++++++++++++++");
+tbleUserModule.tblUserGetOne (1, function (err, rows, fields)
+{
+	if (err)
+	{
+		throw err;
+	}
+	else
+	{
+		console.log ("+++++++++++++++++++++++++++");
+		console.log (rows);
+		console.log (fields);
+		console.log ("+++++++++++++++++++++++++++");
+	}
 });
