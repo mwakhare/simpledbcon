@@ -40,3 +40,10 @@ describe('User Table Model', function(){
 	});
 });
 
+describe('User Table Model', function(){
+	describe('Function: tblUserGetAll ()', function(){
+		it('this is pending test case');
+	});
+});
+
+

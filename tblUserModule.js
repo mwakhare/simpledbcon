@@ -37,7 +37,7 @@ module.exports =
  
             console.log ('Database connection thread id: ' + connection.threadId);
          
-            connection.query ("SELECT * FROM user WHERE id = ?",  userIdToFind, function (err, rows, fields)
+            connection.query ("SELECT * FROM user WHERE id = ?",  [userIdToFind], function (err, rows, fields)
             {
                 connection.release ();
         
@@ -109,7 +109,7 @@ module.exports =
                 return;     
             });
      });
- }
+ },
 
 
 // tblUserInsert: function  (user)
@@ -170,27 +170,46 @@ module.exports =
 //     });
 // },
 
-// tblUserDelete: function  (id)
-//  {
-//     connection.query ("DELETE FROM user WHERE id = ?", id, 
-//     function (err, rows, fields)
-//     {
-//         connection.release ();
-        
-//         if (err) 
-//         {
-//             console.error (err);
-//             //res.json ({"code" : 100, "status" : "Error in connection database"});
-//             return;
-//         }   
-
-//         if (!err) 
-//         {
-//             console.log ('Deleted ' + rows.affectedRows + ' rows');
-//             console.log (fields);            // fields contains extra meta data about results, if available
-//             return (true);
-//         }           
-//     });
-// }
+ //if successful, function returns: specific user id record gets deleted from database
+    tblUserDelete: function (userIdToDelete, callback)
+    {
+        pool.getConnection (function (err, connection)
+        {
+            if (err) 
+            {
+                connection.release ();
+                res.json ({"code" : 100, "status" : "Error in database connection"});  //dummy json error code (error code structure to fix)
+                return;
+            }   
  
+            console.log ('Database connection thread id: ' + connection.threadId);
+         
+            connection.query ("DELETE FROM user WHERE id = ?",  [userIdToDelete], function (err, result)
+            {
+                connection.release ();
+                if (err) 
+                {   
+                    console.error (err);
+                    callback (err);
+                    return;
+                }   
+
+                if (!err) 
+                {
+                    // console.log (record);
+                    // console.log ("Data deleted from Database: \n" + record);
+                   // return (result);          //specific user id record has found and returned.
+                    callback (null, result);
+                }           
+            });
+ 
+            //database connection error
+            connection.on ('error', function (err)
+            {      
+                res.json ({"code" : 100, "status" : "Error in database connection"}); //dummy json error code (error code structure to fix)
+                return;     
+            });
+     });
+ },
+
 }

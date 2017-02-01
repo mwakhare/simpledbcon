@@ -46,3 +46,24 @@ tbleUserModule.tblUserGetAll (function (err, rows, fields)
 	}
 
 });
+
+
+tbleUserModule.tblUserDelete (1, function (err, result)
+{
+	if (err)
+	{
+		throw err;
+	}
+	else if (result.affectedRows == 0)
+	{
+		console.log ("record not found");
+	}
+	else
+	{
+		console.log ("+++++++++++++++++++++++++++");
+		console.log (result);
+		console.log ("+++++++++++++++++++++++++++");
+	}
+
+});
+
