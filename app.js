@@ -1,8 +1,4 @@
-//var express   =    require("express");
 // var mysql     =    require('mysql');
-// //var app       =    express();
-
-var abc = require("./tblUserModule");
 
 // var pool      =    mysql.createPool({
 //     connectionLimit : 100, //important
@@ -13,8 +9,9 @@ var abc = require("./tblUserModule");
 // });
 
 
+var abc = require("./tblUserModule");
 
-var record = abc.tblUserGetOne (1, function);
+var record = abc.tblUserGetOne (1);
 
 console.log("+++++++++++++++++++++++++++");
 console.log (record);
