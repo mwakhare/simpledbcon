@@ -11,9 +11,9 @@
 
 var tbleUserModule = require ("./tblUserModule");
 
-console.log ("+++++++++++  tblUserGetOne  ++++++++++++++++");
+console.log ("******  tblUserGetOne  ********");
 
-tbleUserModule.tblUserGetOne (1, function (err, rows, fields)
+tbleUserModule.tblUserGetOne (2, function (err, rows, fields)
 {
 	if (err)
 	{
@@ -29,7 +29,7 @@ tbleUserModule.tblUserGetOne (1, function (err, rows, fields)
 
 });
 
-console.log ("+++++++++++  tblUserGetAll  ++++++++++++++++");
+console.log ("******  tblUserGetAll  ********");
 
 tbleUserModule.tblUserGetAll (function (err, rows, fields)
 {
@@ -47,23 +47,23 @@ tbleUserModule.tblUserGetAll (function (err, rows, fields)
 
 });
 
+// console.log ("******  tblUserGetDelete  ********");
+// tbleUserModule.tblUserDelete (1, function (err, result)
+// {
+// 	if (err)
+// 	{
+// 		throw err;
+// 	}
+// 	else if (result.affectedRows == 0)
+// 	{
+// 		console.log ("record not found");
+// 	}
+// 	else
+// 	{
+// 		console.log ("+++++++++++++++++++++++++++");
+// 		console.log (result);
+// 		console.log ("+++++++++++++++++++++++++++");
+// 	}
 
-tbleUserModule.tblUserDelete (1, function (err, result)
-{
-	if (err)
-	{
-		throw err;
-	}
-	else if (result.affectedRows == 0)
-	{
-		console.log ("record not found");
-	}
-	else
-	{
-		console.log ("+++++++++++++++++++++++++++");
-		console.log (result);
-		console.log ("+++++++++++++++++++++++++++");
-	}
-
-});
+// });
 

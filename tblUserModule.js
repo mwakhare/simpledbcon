@@ -1,15 +1,15 @@
 'use strict';
 
-var mysql = require ('mysql');
+// var mysql = require ('mysql');
 
-var pool = mysql.createPool 
-({
-    connectionLimit : 100, //max limit to fix.
-    host     : 'localhost',
-    user     : 'milind',
-    password : 'Tori@2016',
-    database : 'korsall'
-});
+// var pool = mysql.createPool 
+// ({
+//     connectionLimit : 100, //max limit to fix.
+//     host     : 'localhost',
+//     user     : 'milind',
+//     password : 'Tori@2016',
+//     database : 'korsall'
+// });
 
 // var pool = mysql.createPool 
 // ({
@@ -20,10 +20,34 @@ var pool = mysql.createPool
 //     database : 'demo'
 // });
 
+var pool = require ('./dbPoolModule');
+
+/*
+ * module:  tblUserModule 
+ * -------------------------
+ * This module exports 5 database releted fuctions on the 'User' Table
+ * 
+ *  tblUserGetOne - to get specific user recrod
+ *  tblUserGetAll - to get all user recrods
+ *  tblUserInsert - to insert specific user recrod
+ *  tblUserUpdate - to update specific user recrod
+ *  tblUserDelete - to delete specific user recrod
+ * 
+ */
 module.exports = 
 {
 
-    //if successful, function returns: specific user id record from database
+/*
+ * Function:  tblUserGetOne 
+ * -------------------------
+ * This function returns the specific user id recrod from the database
+ *
+ * userIdToFind: user id whose record to find in the database
+ * callback: callback async fuction 
+ *
+ * returns:  database record of given user id
+ *           returns error (if record not found)
+ */
     tblUserGetOne: function (userIdToFind, callback)
     {
         pool.getConnection (function (err, connection)
@@ -67,7 +91,18 @@ module.exports =
      });
  },
 
-//if successful, function returns: all user records from database
+
+/*
+ * Function:  tblUserGetAll 
+ * -------------------------
+ * This function returns all the user id recrods from the database
+ *
+ * callback: callback async fuction 
+ *
+ * returns:  all database records (user table)
+ *           returns error (if record not found)
+ */
+
     tblUserGetAll: function (callback)
     {
         pool.getConnection (function (err, connection)
@@ -184,7 +219,18 @@ module.exports =
 //     });
 // },
 
- //if successful, function returns: specific user id record gets deleted from database
+
+/*
+ * Function:  tblUserDelete 
+ * -------------------------
+ * This function deletes the specific user id recrod from the database
+ *
+ * userIdToDelete: user id whose record to delete from database
+ * callback: callback async fuction 
+ *
+ * returns:  ?
+ *           ? returns zero on error or json (if record not found)
+ */
     tblUserDelete: function (userIdToDelete, callback)
     {
         pool.getConnection (function (err, connection)
