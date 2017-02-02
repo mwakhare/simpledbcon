@@ -290,7 +290,7 @@ tblUserUpdate: function (userId, userUpdate, callback)
          
             var userUpdateStr =  JSON.stringify(userUpdate);
 
-            connection.query ('UPDATE user SET user_info = ? Where ID = ?',  [JSON.stringify(userUpdate), userId], function (err, rows, fields)
+            connection.query ('UPDATE user SET user_info = ? Where ID = ?',  [userUpdateStr, userId], function (err, rows, fields)
             {
                 connection.release ();
                 if (err) 
