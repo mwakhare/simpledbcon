@@ -288,9 +288,9 @@ tblUserUpdate: function (userId, userUpdate, callback)
  
             console.log ('Update operation database connection thread id: ' + connection.threadId);
          
-            var newUserToAddStringify =  JSON.stringify(newUserToAdd);
+            var userUpdateStr =  JSON.stringify(userUpdate);
 
-            connection.query ('UPDATE user SET user_info = ? Where ID = ?',  [userUpdate, userId], function (err, rows, fields)
+            connection.query ('UPDATE user SET user_info = ? Where ID = ?',  [userUpdateStr, userId], function (err, rows, fields)
             {
                 connection.release ();
                 if (err) 
