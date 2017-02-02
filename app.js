@@ -1,15 +1,4 @@
-// var mysql     =    require('mysql');
-
-// var pool      =    mysql.createPool({
-//     connectionLimit : 100, //important
-//     host     : 'localhost',
-//     user     : 'milind',
-//     password : 'Tori@2016',
-//     database : 'korsall'
-// });
-
-
-var tbleUserModule = require ("./tblUserModule");
+var tbleUserModule = require ("./tblUserModule"); //to operate 'User' table of 'korsall' database
 
 console.log ("******  tblUserGetOne  ********");
 
@@ -46,6 +35,48 @@ tbleUserModule.tblUserGetAll (function (err, rows, fields)
 	}
 
 });
+
+
+console.log ("******  tblUserInsert  ********");
+
+var newUser = 
+{ 
+	id : 10, 
+	user_info : 
+		{
+			"Name" : "aaa",
+			"Email" : "aaa@aaa.com",
+			"Password" : "aaa",
+			"DOB" : "01/01/1911",
+			"Gender" : "male",
+			"Social" : "aa11",
+			"TC" : "false",
+			"MobileNumber" : "1111111111",
+			"Verified" : "true",
+			"Active" : "true",
+			"LastLogin" : "01/01/2017",
+			"IPAddress" : "111.111.1.1",
+			"MACID" : "aaa111s",
+			"BrowserString": "aaa111aaa"
+		}
+};
+
+tbleUserModule.tblUserInsert (newUser, function (err, result)
+{
+	if (err)
+	{
+		//console.log (err.message);
+	}
+	else
+	{
+		console.log ("+++++++++++++++++++++++++++");
+		console.log (result);
+		console.log ("+++++++++++++++++++++++++++");
+	}
+
+});
+
+
 
 // console.log ("******  tblUserGetDelete  ********");
 // tbleUserModule.tblUserDelete (1, function (err, result)

@@ -39,7 +39,7 @@ module.exports =
                 return;
             }   
  
-            console.log ('Database connection thread id: ' + connection.threadId);
+            console.log ('Get one record database connection thread id: ' + connection.threadId);
          
             connection.query ("SELECT * FROM user WHERE id = ?",  [userIdToFind], function (err, rows, fields)
             {
@@ -90,7 +90,7 @@ module.exports =
                 return;
             }   
  
-            console.log ('Database connection thread id: ' + connection.threadId);
+            console.log ('Get all recors database connection thread id: ' + connection.threadId);
          
             connection.query ("SELECT * FROM user",  function (err, rows, fields)
             {
@@ -141,7 +141,7 @@ module.exports =
                 return;
             }   
  
-            console.log ('Database connection thread id: ' + connection.threadId);
+            console.log ('Delete operation database connection thread id: ' + connection.threadId);
          
             connection.query ("DELETE FROM user WHERE id = ?",  [userIdToDelete], function (err, result)
             {
@@ -212,9 +212,11 @@ tblUserInsert: function (newUserToAdd, callback)
                 return;
             }   
  
-            console.log ('Database connection thread id: ' + connection.threadId);
+            console.log ('Insert operation database connection thread id: ' + connection.threadId);
          
-            connection.query ("INSERT INTO user SET ?",  [newUserToAdd], function (err, result)
+            var newUserToAddStringify =  JSON.stringify(newUserToAdd);
+
+            connection.query ("INSERT INTO user SET ?",  [newUserToAddStringify], function (err, result)
             {
                 connection.release ();
                 if (err) 
@@ -226,7 +228,7 @@ tblUserInsert: function (newUserToAdd, callback)
 
                 if (!err) 
                 {
-                   // console.log ("Data deleted from Database: \n" + result);
+                   // console.log ("Data inserted in the Database: \n" + result);
                    // return (result);         
 
                     // if (result.affectedRows == 1) 
@@ -234,7 +236,7 @@ tblUserInsert: function (newUserToAdd, callback)
                     //     output = 
                     //     {
                     //         code: 200,
-                    //         msg: 'Record is deleted successfully!'
+                    //         msg: 'Record is added successfully!'
                     //     };
                         
                     // } 
@@ -243,7 +245,7 @@ tblUserInsert: function (newUserToAdd, callback)
                     //     output = 
                     //     {
                     //         code: 500,
-                    //         msg: 'Record is NOT deleted.'
+                    //         msg: 'Record is NOT added.'
                     //     }
                     // }
 
