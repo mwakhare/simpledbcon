@@ -1,4 +1,4 @@
-var tbleUserModule = require ("./tblUserModule"); //to operate 'User' table of 'korsall' database
+var tbleUserModule = require ("../tblUserModule"); //to operate 'User' table of 'korsall' database
 
 var app = require ('../app'); //expressJS allows circular dependencies
 
@@ -54,89 +54,114 @@ exports.getOneHandler = function (req, res)
 
 exports.postOneHandler = function (req, res)
 {
-  //app.post('/v1/feedbacks'
+  //app.post('/v1/users'
+            var newUser = 
+            { 
+                id : req.body.userID, 
+                user_info : 
+                    {
+                        Name : req.body.userName,
+                        Email : req.body.Email,
+                        Password : req.body.password,
+                        _DOB : req.body.dob,
+                        Gender : req.body.gender,
+                        Social : req.body.social,
+                        _TC : req.body.tc,
+                        MobileNumber : req.body.mobile,
+                        Verified : req.body.verified,
+                        Active : req.body.active,
+                        LastLogin : req.body.lastLogin,
+                        IPAddress : req.body.ipAddress,
+                        _MACID : req.body._MACID,
+                        BrowserString:req.body.browserString
+                    }
+            };
 
-  var newFeedback = new FeedBackModel ();
+            tbleUserModule.tblUserInsert (newUser, function (err, result)
+            {
+                if (err)
+                {
+                        res.json (false);
+                        //console.log (newFeedback.username + " could not be added");
+                }
+                else
+                {
+                res.json (true);
+                    // console.log ("+++++++++++++++++++++++++++");
+                    // console.log (result);
+                    // console.log ("+++++++++++++++++++++++++++");
+                }
 
-  newFeedback.username = req.body.username;
-  newFeedback.location = req.body.location;
-  newFeedback.response1 = req.body.response1;
-  newFeedback.response2 = req.body.response2;
-  newFeedback.response3 = req.body.response3;
-  newFeedback.response4 = req.body.response4;
-  newFeedback.comment = req.body.comment;
-
-   //save to db through model :: Add a record
-   newFeedback.save (function (err, savedFeedback)
-   {
-        if (err)
-        {
-            res.json (false);
-            //console.log (newFeedback.username + " could not be added");
-        }
-        else
-        {
-            res.json (true);
-            //res.json (savedFeedback);
-
-            //console.log (newFeedback.username + " added successfully");
-        } 
-    }); //newFeedback.save
+            }); //tblUserInsert
 
 }; //postOneHandler
 
 
 exports.updateOneHandler = function (req, res)
 {
-    //app.put ('/v1/feedbacks/:id'
+    //app.put ('/v1/users/:id'
 
-    var feedbackUserName = req.params.id;
-    var feedbackLocation = req.body.location;
-    // var feedbackResponse1 = req.params.response1;
-    // var feedbackResponse2 = req.params.response2;
-    // var feedbackResponse3 = req.params.response3;
-    // var feedbackResponse4 = req.params.response4;
-    // var feedbackComment = req.params.comment;
+var newUser = 
+            { 
+                id : req.body.userID, 
+                user_info : 
+                    {
+                        Name : req.body.userName,
+                        Email : req.body.Email,
+                        Password : req.body.password,
+                        _DOB : req.body.dob,
+                        Gender : req.body.gender,
+                        Social : req.body.social,
+                        _TC : req.body.tc,
+                        MobileNumber : req.body.mobile,
+                        Verified : req.body.verified,
+                        Active : req.body.active,
+                        LastLogin : req.body.lastLogin,
+                        IPAddress : req.body.ipAddress,
+                        _MACID : req.body._MACID,
+                        BrowserString:req.body.browserString
+                    }
+            };
 
-   FeedBackModel.update ( {_id: feedbackUserName }, 
-                            { $set:{ location : feedbackLocation }}, 
-                            {multi:false}, 
-                            function (err, updatedRec)
-                            {
-                                if (err)
-                                {
-                                    res.json (false);
-                                }
-                                else
-                                {
-                                    //res.json (true);
-                                    res.json (updatedRec);
-                                }
-                            }
-                        );
+            tbleUserModule.tblUserUpdate (newUser.id, newUser.user_info, function (err, rows, fields)
+            {
+                if (err)
+                {
+                        res.json (false);
+                }
+                else
+                {
+                res.json (rows);
+                    // console.log ("+++++++++++++++++++++++++++");
+                    // console.log (fields);
+                    // console.log ("+++++++++++++++++++++++++++");
+                }
+
+            }); //tblUserUpdate
+
 }; //updateOneHandler
 
 
 exports.deleteOneHandler = function (req, res)
 {
-    //app.delete ('/v1/feedbacks/:id'
+    //app.delete ('/v1/users/:id'
 
-    var feedbackToDelete = req.params.id;
+    var userToDelete = req.params.id;
 
-    FeedBackModel.remove ( {_id : feedbackToDelete}, 
-                            function (err, feedbackRec)
-                            {
-                                if (err)
-                                {
-                                    res.json (false);
-                                    console.log (feedbackToDelete.username  + " could not be deleted");
-                                }
-                                else
-                                {
-                                    res.json(true);
-                                    console.log ("\n\ndeleteOneHandlerRecord is deleted successfully");
-                                } 
-                            }
-                        ); //FeedBackModel.remove
+    console.log ("\n\deleteOneHandler One user = "  + userToDelete);
+
+     tbleUserModule.tblUserDelete (userToDelete, function (err, result)
+    {
+        if (err)
+        {
+            res.json (false);    
+            return;
+        }
+        else
+        {
+            res.json (result);
+            console.log ("\n\deleteOneHandler: Specific user: " + JSON.stringify (rows));
+        }
+    }); //tbleUserModule.tblUserDelete
 
 }; //deleteOneHandler

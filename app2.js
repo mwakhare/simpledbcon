@@ -10,11 +10,11 @@ app.use (bodyparser.urlencoded ({extended:false}));
 
 // REST Routes
 
-app.get ('/v1/feedbacks', routes.getAllHandler);  				// return all feedbacks records
-app.get ('/v1/feedbacks/:id', routes.getOneHandler);  			// return one record
-app.post ('/v1/feedbacks', routes.postOneHandler); 				// add new feedback record
-app.put ('/v1/feedbacks/:id', routes.updateOneHandler); 		// update a record
-app.delete ('/v1/feedbacks/:id', routes.deleteOneHandler); 		// detete a record
+app.get ('/v1/users', routes.getAllHandler);  				// return all feedbacks records
+app.get ('/v1/users/:id', routes.getOneHandler);  			// return one record
+app.post ('/v1/users', routes.postOneHandler); 				// add new feedback record
+app.put ('/v1/users/:id', routes.updateOneHandler); 		// update a record
+app.delete ('/v1/users/:id', routes.deleteOneHandler); 		// detete a record
 
 
 var port = process.env.PORT || 3000;
