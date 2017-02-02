@@ -1,40 +1,40 @@
 var tbleUserModule = require ("./tblUserModule"); //to operate 'User' table of 'korsall' database
 
-// console.log ("******  tblUserGetOne  ********");
+console.log ("******  tblUserGetOne  ********");
 
-// tbleUserModule.tblUserGetOne (2, function (err, rows, fields)
-// {
-// 	if (err)
-// 	{
-// 		throw err;
-// 	}
-// 	else
-// 	{
-// 		console.log ("+++++++++++++++++++++++++++");
-// 		console.log (rows);
-// 		console.log (fields);
-// 		console.log ("+++++++++++++++++++++++++++");
-// 	}
+tbleUserModule.tblUserGetOne (2, function (err, rows, fields)
+{
+	if (err)
+	{
+		throw err;
+	}
+	else
+	{
+		console.log ("+++++++++++++++++++++++++++");
+		console.log (rows);
+		console.log (fields);
+		console.log ("+++++++++++++++++++++++++++");
+	}
 
-// });
+});
 
-// console.log ("******  tblUserGetAll  ********");
+console.log ("******  tblUserGetAll  ********");
 
-// tbleUserModule.tblUserGetAll (function (err, rows, fields)
-// {
-// 	if (err)
-// 	{
-// 		throw err;
-// 	}
-// 	else
-// 	{
-// 		console.log ("+++++++++++++++++++++++++++");
-// 		console.log (rows);
-// 		console.log (fields);
-// 		console.log ("+++++++++++++++++++++++++++");
-// 	}
+tbleUserModule.tblUserGetAll (function (err, rows, fields)
+{
+	if (err)
+	{
+		throw err;
+	}
+	else
+	{
+		console.log ("+++++++++++++++++++++++++++");
+		console.log (rows);
+		console.log (fields);
+		console.log ("+++++++++++++++++++++++++++");
+	}
 
-// });
+});
 
 
 console.log ("******  Update  ********");
@@ -73,44 +73,44 @@ tbleUserModule.tblUserUpdate (3, user_infoUpdate, function (err, rows, fields)
 });
 
 
-// console.log ("******  tblUserInsert  ********");
+console.log ("******  tblUserInsert  ********");
 
-// var newUser = 
-// { 
-// 	id : 12, 
-// 	user_info : 
-// 		{
-// 			Name : "aaa",
-// 			Email : "aaa@aaa.com",
-// 			Password : "aaa",
-// 			_DOB : "01/01/1911",
-// 			Gender : "male",
-// 			Social : "aa11",
-// 			_TC : "false",
-// 			MobileNumber : "1111111111",
-// 			Verified : "true",
-// 			Active : "true",
-// 			LastLogin : "01/01/2017",
-// 			IPAddress : "111.111.1.1",
-// 			_MACID : "aaa111s",
-// 			BrowserString: "aaa111aaa"
-// 		}
-// };
+var newUser = 
+{ 
+	id : 12, 
+	user_info : 
+		{
+			Name : "aaa",
+			Email : "aaa@aaa.com",
+			Password : "aaa",
+			_DOB : "01/01/1911",
+			Gender : "male",
+			Social : "aa11",
+			_TC : "false",
+			MobileNumber : "1111111111",
+			Verified : "true",
+			Active : "true",
+			LastLogin : "01/01/2017",
+			IPAddress : "111.111.1.1",
+			_MACID : "aaa111s",
+			BrowserString: "aaa111aaa"
+		}
+};
 
-// tbleUserModule.tblUserInsert (newUser, function (err, result)
-// {
-// 	if (err)
-// 	{
-// 		//console.log (err.message);
-// 	}
-// 	else
-// 	{
-// 		console.log ("+++++++++++++++++++++++++++");
-// 		console.log (result);
-// 		console.log ("+++++++++++++++++++++++++++");
-// 	}
+tbleUserModule.tblUserInsert (newUser, function (err, result)
+{
+	if (err)
+	{
+		//console.log (err.message);
+	}
+	else
+	{
+		console.log ("+++++++++++++++++++++++++++");
+		console.log (result);
+		console.log ("+++++++++++++++++++++++++++");
+	}
 
-// });
+});
 
 
 // console.log ("******  tblUserGetDelete  ********");
