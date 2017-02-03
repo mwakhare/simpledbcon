@@ -209,3 +209,58 @@ var tblOrderModule = require ("./tblOrderModule"); //to operate 'Order' table of
 // 	}
 
 // });
+
+console.log ("******  tblOrderInsert  ********");
+
+var newOrder = 
+{ 
+	id : 78, 
+	products : {a: "3", b: "4" },
+	order_total : 7777, 	
+	order_status : {a: "3", b: "4", c: "5" },
+	order_shipping_carrier : 'vbvbvbvb',
+	order_shipping_reference: 'bvbvbv',
+
+	tax_details : {a: "3", b: "4" },
+	is_cancelled : {a: "3", b: "4" },
+	is_returned : {a: "3", b: "4" },
+	tax_id : 1,
+
+	created_by : 1,
+	created_on : '20330303',
+	last_modified_by : 444,
+	last_modified_on : '20330303'
+
+};
+
+/*
+(3,
+'{"a": "3", "b": "4" }',
+1111,
+'{"a": "3", "b": "4", "c": "5" }',
+'cccccccc',
+'cccccccccccccccccc',
+'{"a": "33", "b": "33" }',
+'{"a": "33", "b": "33" }',
+'{"a": "33", "b": "33" }',
+3,
+333,
+'20330303',
+333,
+'20330303');
+*/
+
+tblOrderModule.tblOrderInsert (newOrder, function (err, result)
+{
+	if (err)
+	{
+		//console.log (err.message);
+	}
+	else
+	{
+		console.log ("+++++++++++++++++++++++++++");
+		console.log (result);
+		console.log ("+++++++++++++++++++++++++++");
+	}
+
+});

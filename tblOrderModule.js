@@ -192,17 +192,17 @@ module.exports =
 
 
 /*
- * Function:  tblUserInsert 
+ * Function:  tblOrderInsert 
  * -------------------------
- * This function adds a new user recrod in the database
+ * This function adds a new order recrod in the database
  *
- * newUserToAdd: new user object to add in the database
+ * newOrderToAdd: new user object to add in the database
  * callback: callback async fuction 
  *
  * returns:  ?
- *           ? returns zero on error or json (if record is not inserted)
+ *           ? returns zero on error or json (if order record is not inserted)
  */
-tblUserInsert: function (newUserToAdd, callback)
+tblOrderInsert: function (newOrderToAdd, callback)
     {
         pool.getConnection (function (err, connection)
         {
@@ -213,11 +213,37 @@ tblUserInsert: function (newUserToAdd, callback)
                 return;
             }   
  
-            console.log ('Insert operation database connection thread id: ' + connection.threadId);
+            console.log ('Insert operation on order table, database connection thread id: ' + connection.threadId);
          
-            var newUserToAddStringify =  JSON.stringify(newUserToAdd);
+           var sql =  "INSERT INTO `korsall`.`order`" 
+                      + "(`id`, `products`, `order_total`, `order_status`, `order_shipping_carrier`, `order_shipping_reference`,"
+                      + "`tax_details`, `is_cancelled`, `is_returned`, `tax_id`, `created_by`, `created_on`, `last_modified_by`,"
+                      + "`last_modified_on`)"
+                      +  "VALUES"
+                      +  "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 
-            connection.query ("INSERT INTO user VALUES (?, ?)", [newUserToAdd.id, JSON.stringify(newUserToAdd.user_info)], function (err, result)
+
+            connection.query (sql, 
+                                [
+                                    newOrderToAdd.id, 
+                                    JSON.stringify(newOrderToAdd.products),
+                                    newOrderToAdd.order_total,
+                                    JSON.stringify(newOrderToAdd.order_status),
+                                    newOrderToAdd.order_shipping_carrier,
+                                    
+                                    newOrderToAdd.order_shipping_reference,
+                                    JSON.stringify(newOrderToAdd.tax_details),
+                                    JSON.stringify(newOrderToAdd.is_cancelled),
+                                    JSON.stringify(newOrderToAdd.is_returned),
+                                    newOrderToAdd.tax_id,
+                                    
+                                    newOrderToAdd.created_by,
+                                    newOrderToAdd.created_on,
+                                    newOrderToAdd.last_modified_by,
+                                    newOrderToAdd.last_modified_on
+                                ], 
+                            
+                            function (err, result)
             {
                 connection.release ();
                 if (err) 
