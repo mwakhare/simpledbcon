@@ -215,7 +215,7 @@ tblOrderInsert: function (newOrderToAdd, callback)
  
             console.log ('Insert operation on order table, database connection thread id: ' + connection.threadId);
          
-           var sql =  "INSERT INTO `korsall`.`order`" 
+            var sql =  "INSERT INTO `korsall`.`order`" 
                       + "(`id`, `products`, `order_total`, `order_status`, `order_shipping_carrier`, `order_shipping_reference`,"
                       + "`tax_details`, `is_cancelled`, `is_returned`, `tax_id`, `created_by`, `created_on`, `last_modified_by`,"
                       + "`last_modified_on`)"
@@ -291,18 +291,18 @@ tblOrderInsert: function (newOrderToAdd, callback)
 
 
 /*
- * Function:  tblUserUpdate 
+ * Function:  tblOrderUpdate 
  * -------------------------
- * This function updates a new user recrod in the database
+ * This function updates the existing order recrod in the database.
  *
- * userId: user id whose record is to update
- * userUpdate: user update object to update in the database
+ * orderId: order id whose record is to update
+ * orderUpdate: order update object to update in the database
  * callback: callback async fuction 
  *
  * returns:  ?
- *           ? returns zero on error or json (if record is not updated)
+ *           ? returns zero on error or json (if order record is not updated)
  */
-tblUserUpdate: function (userId, userUpdate, callback)
+tblOrderUpdate: function (orderId, orderUpdate, callback)
     {
         pool.getConnection (function (err, connection)
         {
@@ -313,11 +313,30 @@ tblUserUpdate: function (userId, userUpdate, callback)
                 return;
             }   
  
-            console.log ('Update operation database connection thread id: ' + connection.threadId);
+            console.log ('Update operation on order table, database connection thread id: ' + connection.threadId);
          
-            var userUpdateStr =  JSON.stringify(userUpdate);
+            //var userUpdateStr =  JSON.stringify(userUpdate);
 
-            connection.query ('UPDATE user SET user_info = ? Where ID = ?',  [userUpdateStr, userId], function (err, rows, fields)
+            var sql = "UPDATE `korsall`.`order`"
+                    + "SET"
+                    + "`id` = " + orderId +  ","
+                    + "`products` = " + JSON.stringify(orderUpdate.products) + ","
+                    + "`order_total` = " + orderUpdate.order_total + ","
+                    + "`order_status` = " + JSON.stringify(orderUpdate.order_status) + ","
+                    + "`order_shipping_carrier` = " + orderUpdate.order_shipping_carrier + ","
+                    + "`order_shipping_reference` = " + orderUpdate.order_shipping_reference + ","
+                    + "`tax_details` = " + JSON.stringify(orderUpdate.tax_details) + ","
+                    + "`is_cancelled` = " + JSON.stringify(orderUpdate.is_cancelled) + ","
+                    + "`is_returned` = " + + JSON.stringify(orderUpdate.is_returned) + ","
+                    + "`tax_id` = " + orderUpdate.tax_id + ","
+                    + "`created_by` = " + orderUpdate.created_by + ","
+                    + "`created_on` = " + orderUpdate.created_on + ","
+                    + "`last_modified_by` = " + orderUpdate.last_modified_by + ","
+                    + "`last_modified_on` = " + orderUpdate.last_modified_on 
+                    + "WHERE `id` = " + orderId  + ";"
+
+
+            connection.query (sql, function (err, rows, fields)
             {
                 connection.release ();
                 if (err) 

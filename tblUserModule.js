@@ -267,7 +267,7 @@ tblUserInsert: function (newUserToAdd, callback)
 /*
  * Function:  tblUserUpdate 
  * -------------------------
- * This function updates a new user recrod in the database
+ * This function updates the existing user recrod in the database
  *
  * userId: user id whose record is to update
  * userUpdate: user update object to update in the database
