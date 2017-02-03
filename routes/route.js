@@ -168,12 +168,12 @@ exports.deleteOneHandler = function (req, res)
         if (err)
         {
             res.json (false);    
-            return;
+            //return;
         }
         else
         {
             res.json (result);
-            console.log ("\n\deleteOneHandler: Specific user: " + JSON.stringify (rows));
+            console.log ("\n\deleteOneHandler: Specific user: " + JSON.stringify (result));
         }
     }); //tbleUserModule.tblUserDelete
 

@@ -149,9 +149,9 @@ module.exports =
                 connection.release ();
                 if (err) 
                 {   
-                    console.error (err);
+                    //console.error (err);
                     callback (err);
-                    return;
+                    //return;
                 }   
 
                 if (!err) 
