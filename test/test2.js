@@ -1,32 +1,27 @@
-var chai = require('chai');
-var chaiHttp = require('chai-http');
-var server = require('../app');
-var should = chai.should();
+var chai = require ('chai');
+var chaiHttp = require ('chai-http');
+var server = require ('../app2');
+var should = chai.should ();
 
-chai.use(chaiHttp);
+chai.use (chaiHttp);
 
-
-describe('Blobs', function() {
-  it('should add a SINGLE blob on /blobs POST', function(done) {
-  chai.request(server)
-    .post('/blobs')
-    .send({'name': 'Java', 'lastName': 'Script'})
-    .end(function(err, res){
-      res.should.have.status(200);
-      res.should.be.json;
-      res.body.should.be.a('object');
-      res.body.should.have.property('SUCCESS');
-      res.body.SUCCESS.should.be.a('object');
-      res.body.SUCCESS.should.have.property('name');
-      res.body.SUCCESS.should.have.property('lastName');
-      res.body.SUCCESS.should.have.property('_id');
-      res.body.SUCCESS.name.should.equal('Java');
-      res.body.SUCCESS.lastName.should.equal('Script');
-      done();
-    });
+describe('Users', function() 
+{
+  it ('should list ALL users on /v1/users GET', function (done) 
+  {
+      chai.request (server)
+        .get ('/v1/users')
+        .end (function (err, res)
+        {
+          res.should.have.status (200);
+          res.should.be.json;
+          res.body.should.be.a ('array');
+          done ();
+        });
+  });
+  it('should list a SINGLE user on /v1/users/<id> GET');
+  it('should add a SINGLE blob on /v1/users POST');
+  it('should update a SINGLE blob on /v1/users/<id> PUT');
+  it('should delete a SINGLE blob on /v1/users/<id> DELETE');
 });
-  it('should list a SINGLE blob on /blob/<id> GET');
-  it('should add a SINGLE blob on /blobs POST');
-  it('should update a SINGLE blob on /blob/<id> PUT');
-  it('should delete a SINGLE blob on /blob/<id> DELETE');
-});
+

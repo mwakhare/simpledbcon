@@ -38,3 +38,5 @@ app.listen (port, function ()
 {
 	console.log ('\n\nHTTP web server is listening on port: ' + port);
 });
+
+module.exports = app;
