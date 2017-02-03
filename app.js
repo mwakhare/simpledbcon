@@ -13,6 +13,7 @@
 
 'use strict';
 
+/*  This comment is to hide tbleusermodule. starts here
 var tbleUserModule = require ("./tblUserModule"); //to operate 'User' table of 'korsall' database
 
 console.log ("******  tblUserGetOne  ********");
@@ -148,3 +149,63 @@ tbleUserModule.tblUserInsert (newUser, function (err, result)
 
 // });
 
+  This comment is to hide tbleusermodule.  ends here */
+
+/* Order module database testing starts here */
+var tblOrderModule = require ("./tblOrderModule"); //to operate 'Order' table of 'korsall' database
+
+// console.log ("******  tblOrderGetOne  ********");
+
+// tblOrderModule.tblOrderGetOne (1, function (err, rows, fields)
+// {
+// 	if (err)
+// 	{
+// 		throw err;
+// 	}
+// 	else
+// 	{
+// 		console.log ("+++++++++++++++++++++++++++");
+// 		console.log (rows);
+// 		console.log (fields);
+// 		console.log ("+++++++++++++++++++++++++++");
+// 	}
+
+// });
+
+// console.log ("******  tblOrderGetAll  ********");
+
+// tblOrderModule.tblOrderGetAll (function (err, rows, fields)
+// {
+// 	if (err)
+// 	{
+// 		throw err;
+// 	}
+// 	else
+// 	{
+// 		console.log ("+++++++++++++++++++++++++++");
+// 		console.log (rows);
+// 		console.log (fields);
+// 		console.log ("+++++++++++++++++++++++++++");
+// 	}
+
+// });
+
+// console.log ("******  tblOrderGetDelete  ********");
+// tblOrderModule.tblOrderDelete (3, function (err, result)
+// {
+// 	if (err)
+// 	{
+// 		throw err;
+// 	}
+// 	else if (result.affectedRows == 0)
+// 	{
+// 		console.log ("record not found");
+// 	}
+// 	else
+// 	{
+// 		console.log ("+++++++++++++++++++++++++++");
+// 		console.log (result);
+// 		console.log ("+++++++++++++++++++++++++++");
+// 	}
+
+// });
