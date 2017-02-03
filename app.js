@@ -11,14 +11,30 @@
  * 
  */
 
+/*           &&&&&&&&          Second Target         &&&&&&&&&&&&        */
+
+/*
+ * This module tests tblOrderModule module (5 database releted fuctions (CRUD) on the 'Order' Table from) 
+ * 
+ * tblOrderGetOne - to get specific order recrod
+ * tblOrderGetAll - to get all the order recrods
+ * tblOrderInsert - to insert a new order recrod
+ * tblOrderUpdate - to update the specific order recrod
+ * tblOrderDelete - to delete specific the order recrod
+ * 
+ */
+
+
+
+
 'use strict';
 
 /*  This comment is to hide tbleusermodule. starts here
-var tbleUserModule = require ("./tblUserModule"); //to operate 'User' table of 'korsall' database
+var tblUserModule = require ("./tblUserModule"); //to operate 'User' table of 'korsall' database
 
 console.log ("******  tblUserGetOne  ********");
 
-tbleUserModule.tblUserGetOne (2, function (err, rows, fields)
+tblUserModule.tblUserGetOne (2, function (err, rows, fields)
 {
 	if (err)
 	{
@@ -36,7 +52,7 @@ tbleUserModule.tblUserGetOne (2, function (err, rows, fields)
 
 console.log ("******  tblUserGetAll  ********");
 
-tbleUserModule.tblUserGetAll (function (err, rows, fields)
+tblUserModule.tblUserGetAll (function (err, rows, fields)
 {
 	if (err)
 	{
@@ -73,7 +89,7 @@ var user_infoUpdate =
 			BrowserString: "ccc3332ccc"
 };
 
-tbleUserModule.tblUserUpdate (3, user_infoUpdate, function (err, rows, fields)
+tblUserModule.tblUserUpdate (3, user_infoUpdate, function (err, rows, fields)
 {
 	if (err)
 	{
@@ -113,7 +129,7 @@ var newUser =
 		}
 };
 
-tbleUserModule.tblUserInsert (newUser, function (err, result)
+tblUserModule.tblUserInsert (newUser, function (err, result)
 {
 	if (err)
 	{
@@ -130,7 +146,7 @@ tbleUserModule.tblUserInsert (newUser, function (err, result)
 
 
 // console.log ("******  tblUserGetDelete  ********");
-// tbleUserModule.tblUserDelete (1, function (err, result)
+// tblUserModule.tblUserDelete (1, function (err, result)
 // {
 // 	if (err)
 // 	{
@@ -233,22 +249,6 @@ var tblOrderModule = require ("./tblOrderModule"); //to operate 'Order' table of
 
 // };
 
-// /*
-// (3,
-// '{"a": "3", "b": "4" }',
-// 1111,
-// '{"a": "3", "b": "4", "c": "5" }',
-// 'cccccccc',
-// 'cccccccccccccccccc',
-// '{"a": "33", "b": "33" }',
-// '{"a": "33", "b": "33" }',
-// '{"a": "33", "b": "33" }',
-// 3,
-// 333,
-// '20330303',
-// 333,
-// '20330303');
-// */
 
 // tblOrderModule.tblOrderInsert (newOrder, function (err, result)
 // {
@@ -285,7 +285,7 @@ var orderUpdate =
 		last_modified_on: '20220202'
 };
 
-tblOrderModule.tblOrderUpdate (78, orderUpdate, function (err, rows, fields)
+tblOrderModule.tblOrderUpdate (99, orderUpdate, function (err, rows, fields)
 {
 	if (err)
 	{
@@ -295,6 +295,25 @@ tblOrderModule.tblOrderUpdate (78, orderUpdate, function (err, rows, fields)
 	{
 		console.log ("+++++++++++++++++++++++++++");
 		console.log (rows);
+		console.log ("+++++++++++++++++++++++++++");
+	}
+
+});
+
+
+console.log ("******  tblOrderGetOne  ********");
+
+tblOrderModule.tblOrderGetOne (99, function (err, rows, fields)
+{
+	if (err)
+	{
+		throw err;
+	}
+	else
+	{
+		console.log ("+++++++++++++++++++++++++++");
+		console.log (rows);
+		console.log (fields);
 		console.log ("+++++++++++++++++++++++++++");
 	}
 
