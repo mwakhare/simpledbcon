@@ -1,10 +1,23 @@
-var tbleUserModule = require ("../tblUserModule"); //to operate 'User' table of 'korsall' database
+/*
+ * module: route.js 
+ * -------------------------
+ * This module is a router module to handle the route requests.
+ * 
+ * getAllHandler -  returns JSON array object of all user records from the database.
+ * getOneHandler - returns JSON object of the user id specific record from the database. 
+ * postOneHandler - adds a new JSON object user record in the database.
+ * updateOneHandler - updates the user id specific record in the database.
+ * deleteOneHandler - detetes the user id specific record from the database.
+ * 
+ */
 
-var app = require ('../app'); //expressJS allows circular dependencies
+//to operate on 'User' table of 'korsall' database
+var tbleUserModule = require ("../tblUserModule"); 
+
+//var app = require ('../app'); //expressJS allows circular dependencies
 
 
 // ---------------- REST API HANDLERS ---------------------- //
-
 
 exports.getAllHandler = function (req, res)
 {

@@ -1,3 +1,18 @@
+/*
+ * module:  app.js 
+ * -------------------------
+ * This module tests tblUserModule module (5 database releted fuctions (CRUD) on the 'User' Table from) 
+ * 
+ * tblUserGetOne - to get specific user id recrod
+ * tblUserGetAll - to get all the user recrods
+ * tblUserInsert - to insert new user recrod
+ * tblUserUpdate - to update specific user id recrod
+ * tblUserDelete - to delete specific user id recrod
+ * 
+ */
+
+'use strict';
+
 var tbleUserModule = require ("./tblUserModule"); //to operate 'User' table of 'korsall' database
 
 console.log ("******  tblUserGetOne  ********");
@@ -77,7 +92,7 @@ console.log ("******  tblUserInsert  ********");
 
 var newUser = 
 { 
-	id : 12, 
+	id : 17, 
 	user_info : 
 		{
 			Name : "aaa",

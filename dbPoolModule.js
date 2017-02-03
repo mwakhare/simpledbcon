@@ -1,7 +1,7 @@
 /*
  * module:  dbPoolModule 
  * -------------------------
- * This module exports a pool of 'korsall' database connection objects
+ * This module exports a pool of 'korsall' database connection objects.
  * 
  */
 

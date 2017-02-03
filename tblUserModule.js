@@ -1,11 +1,7 @@
-'use strict';
-
-const pool = require ('./dbPoolModule');  //to get the 'korsall' database connections' pool
-
 /*
  * module:  tblUserModule 
  * -------------------------
- * This module exports 5 database releted fuctions on the 'User' Table
+ * This module exports 5 database releted fuctions (CRUD) on the 'User' Table
  * 
  * tblUserGetOne - to get specific user id recrod
  * tblUserGetAll - to get all the user recrods
@@ -14,6 +10,11 @@ const pool = require ('./dbPoolModule');  //to get the 'korsall' database connec
  * tblUserDelete - to delete specific user id recrod
  * 
  */
+
+'use strict';
+
+const pool = require ('./dbPoolModule');  //to get the 'korsall' database connections' pool
+
 module.exports = 
 {
 
