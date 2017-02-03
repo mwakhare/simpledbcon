@@ -270,22 +270,22 @@ console.log ("******  Update  ********");
 
 var orderUpdate = 
 {
-	 	products: { a : "3331", b : "33332"}, 
-		order_total: 3333, 
-		order_status: {a: "3331", b: "3332", c: "3333"}, 
-		order_shipping_carrier: 'fffffffff', 
-		order_shipping_reference: 'fffffffffff', 
-		tax_details: {a: "33331", b: "333332"}, 
-		is_cancelled: {a: "33331", b: "333332"},
-		is_returned: {a: "33331", b: "333332"}, 
-		tax_id: 1, 
-		created_by: 3333, 
-		created_on: '2011-01-01', 
-		last_modified_by: 3333, 
-		last_modified_on: '2011-01-01'
+	 	products: { a : "8888", b : "8888"}, 
+		order_total: 8888, 
+		order_status: {a: "8888", b: "8888", c: "8888"}, 
+		order_shipping_carrier: 'rrrrrrrr', 
+		order_shipping_reference: 'rrrrrrrrrr', 
+		tax_details: {a: "888888", b: "88888"}, 
+		is_cancelled: {a: "88888", b: "88888"},
+		is_returned: {a: "88888", b: "888888"}, 
+		tax_id: 3, 
+		created_by: 888, 
+		created_on: '20220202', 
+		last_modified_by: 888, 
+		last_modified_on: '20220202'
 };
 
-tblOrderModule.tblOrderUpdate (3, orderUpdate, function (err, rows, fields)
+tblOrderModule.tblOrderUpdate (78, orderUpdate, function (err, rows, fields)
 {
 	if (err)
 	{

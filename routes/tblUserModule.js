@@ -1,13 +1,13 @@
 /*
- * module:  tblOrderModule 
+ * module:  tblUserModule 
  * -------------------------
- * This module exports 5 database releted fuctions (CRUD) on the 'Order' Table
+ * This module exports 5 database releted fuctions (CRUD) on the 'User' Table
  * 
- * tblOrderGetOne - to get specific order recrod.
- * tblOrderGetAll - to get all the orders. 
- * tblOrderInsert - to insert new order recrod.
- * tblOrderUpdate - to update specific order recrod.
- * tblOrderDelete - to delete specific order recrod.
+ * tblUserGetOne - to get specific user id recrod
+ * tblUserGetAll - to get all the user recrods
+ * tblUserInsert - to insert new user recrod
+ * tblUserUpdate - to update specific user id recrod
+ * tblUserDelete - to delete specific user id recrod
  * 
  */
 
@@ -19,17 +19,17 @@ module.exports =
 {
 
 /*
- * Function:  tblOrderGetOne 
+ * Function:  tblUserGetOne 
  * -------------------------
- * This function returns the specific order recrod from the database.
+ * This function returns the specific user id recrod from the database
  *
- * orderIdToFind: order id whose record to find in the database.
- * callback: callback async fuction. 
+ * userIdToFind: user id whose record to find in the database
+ * callback: callback async fuction 
  *
- * returns:  database record of given order id
+ * returns:  database record of given user id
  *           returns error (if record is not found)
  */
-    tblOrderGetOne: function (orderIdToFind, callback)
+    tblUserGetOne: function (userIdToFind, callback)
     {
         pool.getConnection (function (err, connection)
         {
@@ -40,9 +40,9 @@ module.exports =
                 return;
             }   
  
-            console.log ('Get one order record database connection thread id: ' + connection.threadId);
+            console.log ('Get one record database connection thread id: ' + connection.threadId);
          
-            connection.query ("SELECT * FROM korsall.order WHERE id = ?",  [orderIdToFind], function (err, rows, fields)
+            connection.query ("SELECT * FROM user WHERE id = ?",  [userIdToFind], function (err, rows, fields)
             {
                 connection.release ();
         
@@ -55,7 +55,7 @@ module.exports =
 
                 if (!err) 
                 {
-                    // return (rows);          //specific order id record has found and returned.
+                    // return (rows);          //specific user id record has found and returned.
                     callback (null, rows, fields);
                 }           
             });
@@ -71,16 +71,16 @@ module.exports =
 
 
 /*
- * Function:  tblOrderGetAll 
+ * Function:  tblUserGetAll 
  * -------------------------
- * This function returns all the order recrods from the database
+ * This function returns all the user id recrods from the database
  *
  * callback: callback async fuction 
  *
- * returns:  all database records (order table)
+ * returns:  all database records (user table)
  *           returns error (if records are not found)
  */
-    tblOrderGetAll: function (callback)
+    tblUserGetAll: function (callback)
     {
         pool.getConnection (function (err, connection)
         {
@@ -91,9 +91,9 @@ module.exports =
                 return;
             }   
  
-            console.log ('Get all order recors database connection thread id: ' + connection.threadId);
+            console.log ('Get all recors database connection thread id: ' + connection.threadId);
          
-            connection.query ("SELECT * FROM korsall.order",  function (err, rows, fields)
+            connection.query ("SELECT * FROM user",  function (err, rows, fields)
             {
                 connection.release ();
         
@@ -121,17 +121,17 @@ module.exports =
  },
 
 /*
- * Function:  tblOrderDelete 
+ * Function:  tblUserDelete 
  * -------------------------
- * This function deletes the specific order recrod from the database
+ * This function deletes the specific user id recrod from the database
  *
- * orderIdToDelete: order id whose record to delete from database
+ * userIdToDelete: user id whose record to delete from database
  * callback: callback async fuction 
  *
  * returns:  ?
  *           ? returns zero on error or json (if record is not found)
  */
-    tblOrderDelete: function (orderIdToDelete, callback)
+    tblUserDelete: function (userIdToDelete, callback)
     {
         pool.getConnection (function (err, connection)
         {
@@ -142,9 +142,9 @@ module.exports =
                 return;
             }   
  
-            console.log ('Delete operation order table database connection thread id: ' + connection.threadId);
+            console.log ('Delete operation database connection thread id: ' + connection.threadId);
          
-            connection.query ("DELETE FROM korsall.order WHERE id = ?",  [orderIdToDelete], function (err, result)
+            connection.query ("DELETE FROM user WHERE id = ?",  [userIdToDelete], function (err, result)
             {
                 connection.release ();
                 if (err) 
@@ -156,7 +156,7 @@ module.exports =
 
                 if (!err) 
                 {
-                   // console.log ("Data deleted from order table from Database: \n" + result);
+                   // console.log ("Data deleted from Database: \n" + result);
                    // return (result);         
 
                     // if (result.affectedRows == 1) 
@@ -192,17 +192,17 @@ module.exports =
 
 
 /*
- * Function:  tblOrderInsert 
+ * Function:  tblUserInsert 
  * -------------------------
- * This function adds a new order recrod in the database
+ * This function adds a new user recrod in the database
  *
- * newOrderToAdd: new user object to add in the database
+ * newUserToAdd: new user object to add in the database
  * callback: callback async fuction 
  *
  * returns:  ?
- *           ? returns zero on error or json (if order record is not inserted)
+ *           ? returns zero on error or json (if record is not inserted)
  */
-tblOrderInsert: function (newOrderToAdd, callback)
+tblUserInsert: function (newUserToAdd, callback)
     {
         pool.getConnection (function (err, connection)
         {
@@ -213,37 +213,11 @@ tblOrderInsert: function (newOrderToAdd, callback)
                 return;
             }   
  
-            console.log ('Insert operation on order table, database connection thread id: ' + connection.threadId);
+            console.log ('Insert operation database connection thread id: ' + connection.threadId);
          
-            var sql =  "INSERT INTO `korsall`.`order`" 
-                      + "(`id`, `products`, `order_total`, `order_status`, `order_shipping_carrier`, `order_shipping_reference`,"
-                      + "`tax_details`, `is_cancelled`, `is_returned`, `tax_id`, `created_by`, `created_on`, `last_modified_by`,"
-                      + "`last_modified_on`)"
-                      +  "VALUES"
-                      +  "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            var newUserToAddStringify =  JSON.stringify(newUserToAdd);
 
-
-            connection.query (sql, 
-                                [
-                                    newOrderToAdd.id, 
-                                    JSON.stringify(newOrderToAdd.products),
-                                    newOrderToAdd.order_total,
-                                    JSON.stringify(newOrderToAdd.order_status),
-                                    newOrderToAdd.order_shipping_carrier,
-                                    
-                                    newOrderToAdd.order_shipping_reference,
-                                    JSON.stringify(newOrderToAdd.tax_details),
-                                    JSON.stringify(newOrderToAdd.is_cancelled),
-                                    JSON.stringify(newOrderToAdd.is_returned),
-                                    newOrderToAdd.tax_id,
-                                    
-                                    newOrderToAdd.created_by,
-                                    newOrderToAdd.created_on,
-                                    newOrderToAdd.last_modified_by,
-                                    newOrderToAdd.last_modified_on
-                                ], 
-                            
-                            function (err, result)
+            connection.query ("INSERT INTO user VALUES (?, ?)", [newUserToAdd.id, JSON.stringify(newUserToAdd.user_info)], function (err, result)
             {
                 connection.release ();
                 if (err) 
@@ -291,18 +265,18 @@ tblOrderInsert: function (newOrderToAdd, callback)
 
 
 /*
- * Function:  tblOrderUpdate 
+ * Function:  tblUserUpdate 
  * -------------------------
- * This function updates the existing order recrod in the database.
+ * This function updates the existing user recrod in the database
  *
- * orderId: order id whose record is to update
- * orderUpdate: order update object to update in the database
+ * userId: user id whose record is to update
+ * userUpdate: user update object to update in the database
  * callback: callback async fuction 
  *
  * returns:  ?
- *           ? returns zero on error or json (if order record is not updated)
+ *           ? returns zero on error or json (if record is not updated)
  */
-tblOrderUpdate: function (orderId, orderUpdate, callback)
+tblUserUpdate: function (userId, userUpdate, callback)
     {
         pool.getConnection (function (err, connection)
         {
@@ -313,29 +287,11 @@ tblOrderUpdate: function (orderId, orderUpdate, callback)
                 return;
             }   
  
-            console.log ('Update operation on order table, database connection thread id: ' + connection.threadId);
+            console.log ('Update operation database connection thread id: ' + connection.threadId);
          
-            //var userUpdateStr =  JSON.stringify(userUpdate);
+            var userUpdateStr =  JSON.stringify(userUpdate);
 
-            var sql = "UPDATE `korsall`.`order` "
-                    + " SET " 
-                    + " `products` = '" + JSON.stringify(orderUpdate.products) + "', "
-                    + "`order_total` = " + orderUpdate.order_total + ", "
-                    + "`order_status` = '" + JSON.stringify(orderUpdate.order_status) + "', "
-                    + "`order_shipping_carrier` = '" + orderUpdate.order_shipping_carrier + "', "
-                    + "`order_shipping_reference` = '" + orderUpdate.order_shipping_reference + "', "
-                    + "`tax_details` = '" + JSON.stringify(orderUpdate.tax_details) + "', "
-                    + "`is_cancelled` = '" + JSON.stringify(orderUpdate.is_cancelled) + "', "
-                    + "`is_returned` = '" + JSON.stringify(orderUpdate.is_returned) + "', "
-                    + "`tax_id` = " + orderUpdate.tax_id + ", "
-                    + "`created_by` = " + orderUpdate.created_by + ", "
-                    + "`created_on` = '" + orderUpdate.created_on + "', "
-                    + "`last_modified_by` = " + orderUpdate.last_modified_by + ", "
-                    + "`last_modified_on` = '" + orderUpdate.last_modified_on + "' "
-                    + " WHERE `id` = " + orderId  
-
-
-            connection.query (sql, function (err, rows, fields)
+            connection.query ('UPDATE user SET user_info = ? Where ID = ?',  [userUpdateStr, userId], function (err, rows, fields)
             {
                 connection.release ();
                 if (err) 
